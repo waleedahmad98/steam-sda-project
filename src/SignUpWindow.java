@@ -3,6 +3,8 @@ import models.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class SignUpWindow { // the class associated with the bind window
@@ -13,11 +15,13 @@ public class SignUpWindow { // the class associated with the bind window
     private JPasswordField passwordField;
     private JLabel prompt;
     private JButton showAllUsersButton;
+    private JButton alreadyHaveAnAccountButton;
 
 
     public SignUpWindow() {
         signUpButton.addActionListener(e -> getFields());
         showAllUsersButton.addActionListener(e -> showAllUsers());
+        alreadyHaveAnAccountButton.addActionListener(e -> goToLogin());
     }
 
     private void showAllUsers() {
@@ -48,7 +52,13 @@ public class SignUpWindow { // the class associated with the bind window
         return root;
     }
 
+    public void goToLogin(){
+        Main.jf.setContentPane(new LoginWindow().getRoot());
+        Main.jf.setVisible(true);
+    }
+
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
+
 }

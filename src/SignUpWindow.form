@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="SignUpWindow">
-  <grid id="27dc6" binding="root" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="root" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="12" left="24" bottom="12" right="24"/>
     <constraints>
-      <xy x="15" y="30" width="397" height="366"/>
+      <xy x="15" y="30" width="397" height="401"/>
     </constraints>
     <properties>
       <background color="-16374207"/>
@@ -56,10 +56,18 @@
       </component>
       <component id="21c47" class="javax.swing.JButton" binding="showAllUsersButton" default-binding="true">
         <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Show All Users"/>
+        </properties>
+      </component>
+      <component id="e8031" class="javax.swing.JButton" binding="alreadyHaveAnAccountButton" default-binding="true">
+        <constraints>
+          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Already Have An Account? Log In"/>
         </properties>
       </component>
     </children>
