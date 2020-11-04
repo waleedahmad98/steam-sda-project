@@ -1,13 +1,18 @@
+package gui;
+
 import com.mongodb.MongoWriteException;
+import dal.DAL;
 import models.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class SignUpWindow { // the class associated with the bind window
+
+    private LoginWindow referrer;
+
+    private JFrame parent;
     private JButton signUpButton;
     private JPanel root;
     private JLabel logo;
@@ -18,7 +23,9 @@ public class SignUpWindow { // the class associated with the bind window
     private JButton alreadyHaveAnAccountButton;
 
 
-    public SignUpWindow() {
+    public SignUpWindow(JFrame parent, LoginWindow referrer) {
+        this.referrer = referrer;
+        this.parent = parent;
         signUpButton.addActionListener(e -> getFields());
         showAllUsersButton.addActionListener(e -> showAllUsers());
         alreadyHaveAnAccountButton.addActionListener(e -> goToLogin());
@@ -53,8 +60,7 @@ public class SignUpWindow { // the class associated with the bind window
     }
 
     public void goToLogin(){
-        Main.jf.setContentPane(new LoginWindow().getRoot());
-        Main.jf.setVisible(true);
+        this.parent.setContentPane(referrer.getRoot());
     }
 
     private void createUIComponents() {

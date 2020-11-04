@@ -1,10 +1,10 @@
+package dal;
+
 import com.mongodb.*;
 import com.mongodb.MongoClient;
 import com.mongodb.client.*;
-import com.mongodb.client.model.IndexModel;
-import com.mongodb.client.model.IndexOptionDefaults;
 import com.mongodb.client.model.IndexOptions;
-import com.mongodb.client.model.Indexes;
+import models.Game;
 import models.User;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -23,12 +23,28 @@ public class DAL {
 
     public void addUser(User u) {
         db.getCollection("users", User.class).insertOne(u);
+    } // adds user to the database
+
+    public User getUser(String username, String password) { // gets single user from the database
+        Document findDoc = new Document("username", username).append("password", password);
+        for (User u : db.getCollection("users", User.class).find(findDoc)) {
+            return u;
+        }
+        return null;
     }
 
-    public ArrayList<User> getAllUsers() {
+    public ArrayList<User> getAllUsers() { // gets all users from the database
         ArrayList<User> arr = new ArrayList<User>();
         for (User u : db.getCollection("users", User.class).find()) {
             arr.add(u);
+        }
+        return arr;
+    }
+
+    public ArrayList<Game> getAllGames() { // gets all games from the database
+        ArrayList<Game> arr = new ArrayList<Game>();
+        for (Game g : db.getCollection("store", Game.class).find()) {
+            arr.add(g);
         }
         return arr;
     }

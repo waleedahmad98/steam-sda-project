@@ -10,6 +10,7 @@ public class User {
     public User(String username, String password) {
         setUsername(username);
         setPassword(password);
+        setWallet(0.0);
     }
 
     public String getUsername() {
@@ -28,7 +29,11 @@ public class User {
         this.password = password;
     }
 
+    public double getWallet(){ return wallet; }
+
+    public void setWallet(double wallet){ this.wallet=wallet; }
+
     private String username;
     private String password;
-
+    private double wallet;
 }

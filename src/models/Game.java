@@ -1,13 +1,10 @@
 package models;
 
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
+
 public class Game {
     public Game() {}
-
-    public Game(int id, String name, String iconLink) {
-        setId(id);
-        setName(name);
-        setLink(iconLink);
-    }
 
     public String getName() {
         return name;
@@ -18,11 +15,11 @@ public class Game {
     }
 
     public String getLink() {
-        return iconLink;
+        return icon;
     }
 
     public void setLink(String iconLink) {
-        this.iconLink = iconLink;
+        this.icon = iconLink;
     }
 
     public String getExecPath(){
@@ -33,16 +30,28 @@ public class Game {
         this.executablePath = executablePath;
     }
 
-    public int getId(){
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(int id){
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
-    private int id;
+    public double getPrice(){
+        return price;
+    }
+
+    public void setPrice(double price){
+        this.price = price;
+    }
+
+
+    @BsonId()
+    private ObjectId id;
     private String name;
-    private String iconLink;
+    private String icon;
+    private double price;
     private String executablePath;
+
 }
