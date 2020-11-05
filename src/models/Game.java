@@ -6,6 +6,13 @@ import org.bson.types.ObjectId;
 public class Game {
     public Game() {}
 
+    public Game(String name, String icon, double price){
+        setName(name);
+        setPrice(price);
+        setIcon(icon);
+        setExecPath(null);
+    }
+
     public String getName() {
         return name;
     }
@@ -18,8 +25,8 @@ public class Game {
         return icon;
     }
 
-    public void setLink(String iconLink) {
-        this.icon = iconLink;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getExecPath(){

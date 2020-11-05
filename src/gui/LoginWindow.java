@@ -16,7 +16,7 @@ public class LoginWindow {
     private JButton noAccountSignUpButton;
 
 
-    public LoginWindow(JFrame parent) { 
+    public LoginWindow(JFrame parent) {
         this.parent = parent;
 
         loginButton.addActionListener(e -> validateLogin());
@@ -30,7 +30,11 @@ public class LoginWindow {
     public void validateLogin(){
         String usernameText = username.getText();
         String passwordText = password.getText();
-        if (usernameText.equals(""))
+
+        usernameText = "waleedahmad98";
+        passwordText = "batarang";
+
+        if (usernameText ==  null || passwordText == null)
         {
             System.out.println("fields cannot be empty");
             //TODO: add this to label

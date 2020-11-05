@@ -18,6 +18,7 @@ public class LibraryWindow {
     private JButton addFundsButton;
     private JButton logOutButton;
 
+
     LibraryWindow(JFrame parent, User user){
 //        ArrayList<User> users =  DAL.getInstance().getAllUsers();
 //        for (int i=0; i<users.size();i++){
