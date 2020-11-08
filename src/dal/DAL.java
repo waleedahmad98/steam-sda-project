@@ -41,6 +41,21 @@ public class DAL {
         return arr;
     }
 
+    public void setFunds(String username, double amount){
+        //Document findDoc = new Document("username", u.getUsername());
+        //db.getCollection("users", User.class).updateOne(findDoc, u);
+
+        Document query = new Document();
+        query.append("username",username);
+        Document setData = new Document();
+        setData.append("wallet", amount);
+        Document update = new Document();
+        update.append("$set", setData);
+        //To update single Document
+        db.getCollection("users").updateOne(query, update);
+        //collection.updateOne(query, update);
+    }
+
     public ArrayList<Game> getAllGames() { // gets all games from the database
         ArrayList<Game> arr = new ArrayList<Game>();
         for (Game g : db.getCollection("store", Game.class).find()) {

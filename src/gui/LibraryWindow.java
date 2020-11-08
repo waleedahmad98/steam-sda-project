@@ -4,6 +4,8 @@ import dal.DAL;
 import models.User;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class LibraryWindow {
@@ -31,6 +33,12 @@ public class LibraryWindow {
         storeButton.addActionListener(e -> {
             this.parent.setContentPane(new StoreWindow(this.parent, this).getRoot());
             this.parent.setVisible(true);
+        });
+        addFundsButton.addActionListener(e -> {
+            JFrame jf = new JFrame("Add Funds");
+            jf.setSize(300, 200);
+            jf.setContentPane(new FundsWindow(this.user, this.walletAmnt).getRoot());
+            jf.setVisible(true);
         });
     }
 
