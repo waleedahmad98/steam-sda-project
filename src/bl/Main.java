@@ -1,3 +1,5 @@
+package bl;
+
 import gui.LoginWindow;
 
 import javax.swing.*;
@@ -12,6 +14,9 @@ public class Main {
         jf.setContentPane(new LoginWindow(jf).getRoot()); // initial content is the login page
         // so we create its object and send the frame to it so that it may use to change content as well
         jf.setVisible(true);
+
+
     }
+
 
 }

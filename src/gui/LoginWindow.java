@@ -4,7 +4,6 @@ import dal.DAL;
 import models.User;
 
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class LoginWindow {
     private JFrame parent;
@@ -30,9 +29,6 @@ public class LoginWindow {
     public void validateLogin(){
         String usernameText = username.getText();
         String passwordText = password.getText();
-
-        usernameText = "waleedahmad98";
-        passwordText = "batarang";
 
         if (usernameText ==  null || passwordText == null)
         {

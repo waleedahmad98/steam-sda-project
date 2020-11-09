@@ -1,8 +1,8 @@
 package dal;
-
-import com.mongodb.*;
+import bl.interace_db;
 import com.mongodb.MongoClient;
-import com.mongodb.client.*;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
 import models.Game;
 import models.User;
@@ -17,7 +17,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 // DATA ACCESS LAYER
 // we're going to be using mongoCloud database, which is set up in this file. This class only links the Data Layer with the Business Layer. It serves only that purpose.
-public class DAL {
+public class DAL implements interace_db{
 
     private static final String MONGO_URI = "mongodb+srv://waleed:G5yweyucZtCca23@cluster0.0o9s1.mongodb.net/steam?retryWrites=true&w=majority";
 
