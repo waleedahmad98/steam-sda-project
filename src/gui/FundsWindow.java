@@ -4,8 +4,6 @@ import dal.DAL;
 import models.User;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static java.lang.Integer.parseInt;
 
@@ -25,6 +23,7 @@ public class FundsWindow {
             System.out.println(newAmount);
             DAL.getInstance().setFunds(user.getUsername(), newAmount);
             JOptionPane.showMessageDialog(this.root, String.valueOf(parsed));
+            //TODO: re fetch user.
         });
     }
 

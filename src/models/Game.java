@@ -53,6 +53,7 @@ public class Game {
         this.price = price;
     }
 
+    public ObjectId getObjectId(){ return this.id; }
 
     @BsonId()
     private ObjectId id;

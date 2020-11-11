@@ -2,15 +2,12 @@ package gui;
 
 import dal.DAL;
 import models.Game;
+import models.User;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class StoreWindow {
@@ -18,7 +15,7 @@ public class StoreWindow {
     private JPanel root;
     private JButton libraryButton;
     private JPanel container;
-
+    private User user;
     private void loadStore() {
         ArrayList<Game> games = DAL.getInstance().getAllGames();
 
@@ -34,6 +31,13 @@ public class StoreWindow {
                 Image img = ImageIO.read(new URL(game.getLink()))
                         .getScaledInstance(266, 150, Image.SCALE_SMOOTH);
                 newButton.setIcon(new ImageIcon(img));
+
+                newButton.addActionListener(e -> {
+                    JFrame jf = new JFrame(game.getName());
+                    jf.setSize(400, 600); // set window size - change later
+                    jf.setContentPane(new GameInfoWindow(this.user, game, img).getRoot());
+                    jf.setVisible(true);
+                });
                 container.updateUI();
 
             } catch(Exception ex){
@@ -42,7 +46,8 @@ public class StoreWindow {
         }
     }
 
-    public StoreWindow(JFrame parent, LibraryWindow referrer) {
+    public StoreWindow(User user, JFrame parent, LibraryWindow referrer) {
+        this.user = DAL.getInstance().getUser(user.getUsername(), user.getPassword());
         libraryButton.addActionListener(e -> {
             parent.setContentPane(referrer.getRoot());
         });

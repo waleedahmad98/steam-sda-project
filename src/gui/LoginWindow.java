@@ -2,10 +2,10 @@ package gui;
 
 import dal.DAL;
 import models.User;
-
+import bl.interface_gui;
 import javax.swing.*;
 
-public class LoginWindow {
+public class LoginWindow implements interface_gui {
     private JFrame parent;
     private JPanel root;
     private JLabel logo;

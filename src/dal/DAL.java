@@ -1,14 +1,17 @@
 package dal;
-import bl.interace_db;
+
+import bl.interface_db;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.IndexOptions;
 import models.Game;
+import models.GamePathMapping;
 import models.User;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
+import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 // DATA ACCESS LAYER
 // we're going to be using mongoCloud database, which is set up in this file. This class only links the Data Layer with the Business Layer. It serves only that purpose.
-public class DAL implements interace_db{
+public class DAL implements interface_db {
 
     private static final String MONGO_URI = "mongodb+srv://waleed:G5yweyucZtCca23@cluster0.0o9s1.mongodb.net/steam?retryWrites=true&w=majority";
 
@@ -56,12 +59,74 @@ public class DAL implements interace_db{
         //collection.updateOne(query, update);
     }
 
+    public void addGameToLibrary(String username, GamePathMapping game){
+        Document query = new Document();
+        query.append("username",username);
+        Document setData = new Document();
+        setData.append("games_library",game);
+        Document update = new Document();
+        update.append("$push", setData);
+        //To update single Document
+        db.getCollection("users").updateOne(query, update);
+
+    }
+
+    public void addGameToAccount(String username, ObjectId id){
+        Document query = new Document();
+        query.append("username",username);
+        Document setData = new Document();
+        setData.append("games_bought",id);
+        Document update = new Document();
+        update.append("$push", setData);
+        //To update single Document
+        db.getCollection("users").updateOne(query, update);
+
+    }
+
+
     public ArrayList<Game> getAllGames() { // gets all games from the database
         ArrayList<Game> arr = new ArrayList<Game>();
         for (Game g : db.getCollection("store", Game.class).find()) {
             arr.add(g);
         }
         return arr;
+    }
+
+    public ArrayList<Game> getGamesByIds(ArrayList<GamePathMapping> mappings){
+        ArrayList<Game> games =  new ArrayList<>();
+        // TODO: add functionality here
+        for (GamePathMapping maps:mappings) {
+            Document findDoc = new Document("_id", maps.getId());
+            for (Game g : db.getCollection("store", Game.class).find(findDoc)) {
+                System.out.println(g.getName());
+                g.setExecPath(maps.getPath()); // this
+                games.add(g);
+            }
+        }
+        // TODO:
+        return games;
+    }
+
+    public void decreaseFunds(String username,double amount){
+        Document query = new Document();
+        query.append("username",username);
+        Document setData = new Document();
+        setData.append("wallet", amount);
+        Document update = new Document();
+        update.append("$set", setData);
+        //To update single Document
+        db.getCollection("users").updateOne(query, update);
+    }
+
+    public void removeGame(Game game, User user){
+        Document query = new Document();
+        query.append("username",user.getUsername());
+        Document setData = new Document();
+        setData.append("games_library", new GamePathMapping(game.getId(), game.getExecPath()));
+        Document update = new Document();
+        update.append("$pull", setData);
+        //To update single Document
+        db.getCollection("users").updateOne(query, update);
     }
 
     // database structure methods
