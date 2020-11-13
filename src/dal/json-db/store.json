@@ -1,0 +1,16 @@
+[{
+    "_id": "5fae70b5d7b741035851d1cd",
+    "name": "Cyberpunk 2077",
+    "icon": "https://media.rawg.io/media/games/26d/26d4437715bee60138dab4a7c8c59c92.jpg",
+    "price": 2999
+}, {
+    "_id": "5fae70b5d7b741035851d1ce",
+    "name": "Red Dead Redemption 2",
+    "icon": "https://media.rawg.io/media/games/511/5118aff5091cb3efec399c808f8c598f.jpg",
+    "price": 3999
+}, {
+    "_id": "5fae70b5d7b741035851d1cf",
+    "name": "Assassin's Creed Valhalla",
+    "icon": "https://images.hdqwalls.com/download/assassins-creed-valhalla-game-by-1920x1080.jpg",
+    "price": 6999
+}]

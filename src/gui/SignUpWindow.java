@@ -6,8 +6,11 @@ import models.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
+
+// This window shows the signup panel
 public class SignUpWindow { // the class associated with the bind window
 
     private LoginWindow referrer;
@@ -49,7 +52,7 @@ public class SignUpWindow { // the class associated with the bind window
             DAL.getInstance().addUser(u);
             this.prompt.setForeground(Color.GREEN);
             this.prompt.setText("User registered!");
-        } catch (MongoWriteException e) {
+        } catch (MongoWriteException | IOException e) {
             this.prompt.setForeground(Color.RED);
             this.prompt.setText("User already exists!");
         }

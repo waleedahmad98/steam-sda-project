@@ -10,6 +10,7 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 
+// This windows loads the library games.
 public class LibraryWindow {
 
     private User user;
@@ -63,10 +64,9 @@ public class LibraryWindow {
         walletAmnt.setText(String.valueOf(user.getWallet()));
 
         ArrayList<Game> games = DAL.getInstance().getGamesByIds(user.getGames_library());
-        //System.out.println(games);
+
         for (Game game : games) {
             try {
-                System.out.println(game.getExecPath());
                 JButton newButton = new JButton();
                 newButton.setText(game.getName());
                 newButton.setBackground(Color.BLUE);

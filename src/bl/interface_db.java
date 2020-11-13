@@ -5,11 +5,12 @@ import models.GamePathMapping;
 import models.User;
 import org.bson.types.ObjectId;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public interface interface_db {
 
-    public void addUser(User u);
+    public void addUser(User u) throws IOException;
 
     public ArrayList<User> getAllUsers();
 
@@ -26,4 +27,6 @@ public interface interface_db {
     public void decreaseFunds(String username, double amount);
 
     public void removeGame(Game game, User user);
+
+    User getUser(String username, String password);
 }

@@ -10,6 +10,8 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 
+// This window loads the store.
+
 public class StoreWindow {
     private JFrame parent;
     private JPanel root;
@@ -22,7 +24,7 @@ public class StoreWindow {
         for (Game game : games) {
             try {
                 JButton newButton = new JButton();
-                newButton.setText(game.getName());
+                newButton.setText(game.getName() + " (" + game.getPrice() + ")");
                 newButton.setBackground(Color.BLUE);
                 newButton.setVerticalTextPosition(SwingConstants.BOTTOM);
                 newButton.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -33,10 +35,13 @@ public class StoreWindow {
                 newButton.setIcon(new ImageIcon(img));
 
                 newButton.addActionListener(e -> {
-                    JFrame jf = new JFrame(game.getName());
-                    jf.setSize(400, 600); // set window size - change later
-                    jf.setContentPane(new GameInfoWindow(this.user, game, img).getRoot());
-                    jf.setVisible(true);
+                    if (this.user.getWallet() < game.getPrice()){JOptionPane.showMessageDialog(this.root, "You do not have sufficient funds");}
+                    else {
+                        JFrame jf = new JFrame(game.getName());
+                        jf.setSize(400, 600); // set window size - change later
+                        jf.setContentPane(new GameInfoWindow(this.user, game, img).getRoot());
+                        jf.setVisible(true);
+                    }
                 });
                 container.updateUI();
 

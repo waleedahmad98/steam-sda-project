@@ -7,8 +7,11 @@ import models.User;
 import org.bson.types.ObjectId;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
+import java.io.File;
 
+// This window adds games to the either bought array, or the library array.
 public class GameInfoWindow {
     private JPanel root;
     private JButton buyButton;
@@ -31,27 +34,38 @@ public class GameInfoWindow {
 
             DAL.getInstance().decreaseFunds(user.getUsername(), this.user.getWallet()-game.getPrice());
 
-            // TODO: decrease wallet funds
         } else {
             JOptionPane.showMessageDialog(this.root, "You do not have enough funds to buy this game!");
         }
 
         downloadButton.addActionListener(e -> {
-            // TODO: get path here without hard coding it
             int found = 0;
             this.user = DAL.getInstance().getUser(user.getUsername(), user.getPassword());
 
-            for (ObjectId id : this.user.getGames_bought()) {
-                System.out.println(id);
-                System.out.println(game.getId());
-                if (id.equals(game.getId())){
-                    String path = "D:\\Games\\Among Us\\Among Us.exe";
-                    DAL.getInstance().addGameToLibrary(user.getUsername(), new GamePathMapping(game.getId(), path));
-                    JOptionPane.showMessageDialog(this.root, game.getName() + " added to Library!");
-                    found = 1;
+            JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+
+            int returnValue = jfc.showOpenDialog(null);
+            String path =  null;
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = jfc.getSelectedFile();
+                System.out.println(selectedFile.getAbsolutePath());
+                path = selectedFile.getAbsolutePath();
+            }
+            if (path != null) {
+                for (ObjectId id : this.user.getGames_bought()) {
+                    System.out.println(id);
+                    System.out.println(game.getId());
+                    if (id.equals(game.getId())) {
+                        DAL.getInstance().addGameToLibrary(user.getUsername(), new GamePathMapping(game.getId(), path));
+                        JOptionPane.showMessageDialog(this.root, game.getName() + " added to Library!");
+                        found = 1;
+                    }
+                }
+                if (found == 0) {
+                    JOptionPane.showMessageDialog(this.root, "You haven't purchased this game yet!");
                 }
             }
-            if (found == 0) {JOptionPane.showMessageDialog(this.root, "You haven't purchased this game yet!");}
+            else {JOptionPane.showMessageDialog(this.root, "Error while finding path.");}
         });
 
     }

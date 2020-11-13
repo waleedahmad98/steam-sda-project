@@ -1,10 +1,15 @@
 package gui;
 
-import dal.DAL;
-import models.User;
 import bl.interface_gui;
+import dal.DAL;
+import dal.LocalDAL;
+import dal.MongoDAL;
+import models.User;
+
 import javax.swing.*;
 
+
+// This window shows the login panel
 public class LoginWindow implements interface_gui {
     private JFrame parent;
     private JPanel root;
@@ -13,6 +18,7 @@ public class LoginWindow implements interface_gui {
     private JPasswordField password;
     private JButton loginButton;
     private JButton noAccountSignUpButton;
+    private JCheckBox dbCheckBox;
 
 
     public LoginWindow(JFrame parent) {
@@ -20,6 +26,14 @@ public class LoginWindow implements interface_gui {
 
         loginButton.addActionListener(e -> validateLogin());
         noAccountSignUpButton.addActionListener(e -> goToSignUp());
+        dbCheckBox.addActionListener(e -> {
+
+            if(dbCheckBox.isSelected()) // sets DB instance
+                DAL.setInstance(new LocalDAL());
+            else
+                DAL.setInstance(new MongoDAL());
+
+        });
     }
 
     public JPanel getRoot() {

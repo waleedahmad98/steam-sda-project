@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+// This window prompts the user to launch or remove the game.
 public class GameLaunchWindow {
     private JButton launchButton;
     private JPanel root;

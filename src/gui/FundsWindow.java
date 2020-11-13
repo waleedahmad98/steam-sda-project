@@ -7,6 +7,8 @@ import javax.swing.*;
 
 import static java.lang.Integer.parseInt;
 
+
+// This window adds funds to the wallet
 public class FundsWindow {
     private JPanel root;
     private JTextField textField1;
