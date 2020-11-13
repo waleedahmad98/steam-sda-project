@@ -202,6 +202,9 @@ public class LocalDAL implements interface_db {
                 if(u.getUsername().equals(username) )
                     u.setWallet(amount);
             }
+            FileWriter writer = new FileWriter("src/dal/json-db/users.json");
+            g.toJson(userArray, writer);
+            writer.close();
         }
         catch(Exception e){
             System.out.println(e);
@@ -211,7 +214,29 @@ public class LocalDAL implements interface_db {
 
     @Override
     public void removeGame(Game game, User user) {
-
+        try {
+            Gson g = new GsonBuilder().create();
+            String content = Files.readString(Path.of("src/dal/json-db/users.json"));
+            User[] userFile = g.fromJson(content, User[].class);
+            ArrayList<User> userArray = new ArrayList<User>(Arrays.asList(userFile));
+            ArrayList<GamePathMapping> result =  user.getGames_library();
+            for (User u:userArray){
+                if(u.getUsername().equals(user.getUsername())) {
+                    for (int i = 0; i < result.size(); i++) {
+                        if (result.get(i).getId().equals(game.getId())) {
+                            result.remove(i);
+                        }
+                    }
+                    u.setGames_library(result);
+                }
+            }
+            FileWriter writer = new FileWriter("src/dal/json-db/users.json");
+            g.toJson(userArray, writer);
+            writer.close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     @Override
