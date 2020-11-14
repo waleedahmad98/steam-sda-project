@@ -21,6 +21,7 @@ public class Main {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+
         DAL.setInstance(new MongoDAL()); // set default DB instance to MongoDB.
 
         jf = new JFrame("The Steam she tells you not to worry about"); // initiate the frame
@@ -30,8 +31,6 @@ public class Main {
         // so we create its object and send the frame to it so that it may use to change content as well
         jf.setVisible(true);
 
-
     }
-
 
 }
