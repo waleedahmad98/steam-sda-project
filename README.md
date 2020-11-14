@@ -10,16 +10,16 @@ This project uses MongoDB Cloud as its database, storing users, game information
 * **Daud Mazhar (18L-0919)** *Class Diagram, Front-end and Documentation*
 * **Sameer Ali (18L-1150)** *Business Layer Logic*
 
-### Use cases
-1 DisplayUserInfo
-2 View Wallet
-3 BuyGame
-4 DownloadGame
-5 LaunchGame
-6 RemoveGame
-7 ViewStore
-8 ViewLibrary
-9 GetGameInfo
-10 CreateAccount
-11 UpdateWallet
-12 SearchGame
+### Use Cases
+* ViewWallet
+* BuyGame
+* DownloadGame
+* LaunchGame
+* RemoveGame
+* ViewStore
+* ViewLibrary
+* GetGameInfo
+* CreateAccount
+* UpdateWallet
+* BrowseGames
+* DisplayUserInfo
