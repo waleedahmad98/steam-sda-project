@@ -24,7 +24,7 @@ public class Main {
 
         DAL.setInstance(new MongoDAL()); // set default DB instance to MongoDB.
 
-        jf = new JFrame("The Steam she tells you not to worry about"); // initiate the frame
+        jf = new JFrame("Steam"); // initiate the frame
         jf.setSize(400, 600); // set window size
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setContentPane(new LoginWindow(jf).getRoot()); // initial content is the login page
