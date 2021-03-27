@@ -21,7 +21,7 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 // Implements all the functions of the interface and overrides them to work with MongoDB Atlas
 public class MongoDAL implements interface_db {
 
-    private static final String MONGO_URI = "mongodb+srv://waleed:G5yweyucZtCca23@cluster0.0o9s1.mongodb.net/steam?retryWrites=true&w=majority";
+    private static final String MONGO_URI;
 
     public void addUser(User u) {
         db.getCollection("users", User.class).insertOne(u);
